@@ -4,7 +4,7 @@ import TeamNavbar from "./TeamNavbar";
 import TeamCard from "./TeamCard";
 import TeamLead from "./TeamLead";
 import CoLead from "../assests/CoLead.jpg";
-import TechLead from "../assests/TechLead.jpg";
+import TechLead from "../assets/TechLead.jpg";
 import CoLeadAssist from "../assests/CoLeadAssist.jpg";
 import Vaishnavi from '../assests/Vaishnavi.jpg'
 import NonTechlead from '../assests/NonTeachLead.jpg'
