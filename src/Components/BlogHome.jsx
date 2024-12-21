@@ -6,7 +6,7 @@ import chair from '../assests/Illustration.png'
 const BlogSection = () => {
   return (
     <>
-    <section className="w-full h-[75vh] flex flex-col-reverse lg:flex-row items-center">
+    <section className="w-full h-full min-[850px]:h-[75vh] flex flex-col-reverse lg:flex-row items-center">
       <div className="left w-full lg:w-[50vw] h-full bg-white flex flex-col justify-center lg:pl-24 px-8 text-black">
         <div className="flex items-center  ">
           <img className="h-28 w-28" src={GDGLOGO} alt="GDG Logo" />
