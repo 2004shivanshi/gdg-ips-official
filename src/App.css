@@ -1,0 +1,284 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.timeline-wrapper {
+  margin-top: 10px;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container {
+  padding: 10px 50px;
+  position: relative;
+  width: 50%;
+  opacity: 0; /* Initially hidden */
+  transform: translateY(20px); /* Slightly moved down */
+  animation: fadeIn 1s ease forwards; /* Trigger fade-in animation */
+}
+
+.container img {
+  position: absolute;
+  width: 60px;
+  border-radius: 50%;
+  right: -30px;
+  top: 32px;
+  z-index: 10;
+  object-fit: cover;
+}
+
+.text-box {
+  padding: 20px 30px;
+  position: relative;
+  border-radius: 12px;
+  font-size: 15px;
+  background: linear-gradient(135deg, #f5f4f4, #f8f9fa);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1), 0px 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2), 0px 15px 40px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #eef1f3, #ffffff);
+}
+
+
+
+.text-box h2 {
+  font-size: 1.75rem;
+  color: #2d3142;
+  margin-bottom: 8px;
+}
+
+.text-box h3 {
+  font-size: 1rem;
+  color: #4a4a4a;
+  line-height: 1.5;
+}
+
+.text-box p {
+  font-size: 0.875rem;
+  color: #7f8c8d;
+  margin-top: 10px;
+}
+
+.leftContainer-arrow,
+.rightContainer-arrow {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: inherit;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+.leftContainer-arrow {
+  top: 50%;
+  right: -6px;
+}
+
+.rightContainer-arrow {
+  top: 50%;
+  left: -6px;
+}
+
+
+
+
+.timeline-wrapper::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  background-color: rgb(111, 110, 110);
+  top: 0;
+  left: 50%;
+  margin-left: -3px;
+  z-index: -1;
+  border-radius: 50px;
+  animation: moveline 6s linear;
+}
+
+@keyframes moveline {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+@media screen and (max-width:600px){
+  .timeline-wrapper{
+    margin: 50px auto;
+
+  }
+  .timeline-wrapper::after{
+    left:31px;
+
+  }
+  .container{
+    width: 100%;
+    padding-left: 80px;
+    padding-right: 25px;
+
+  }
+  .text-box{
+    font-size: 13px;
+  }
+  .text-box small{
+    margin-bottom:10px;
+  }
+.rightContainer{
+  left: 0px;
+
+}
+
+.rightContainerImg , .leftContainerImg{
+left: 10px;
+}
+
+.rightContainer-arrow , .leftContainer-arrow{
+  border-right: 15px solid,#0ecfdc;;
+  border-left: 0;
+  left: -15px;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+*{ 
+   font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+ 
+}
+/* Container Styling */
+/* Moving Text Section */
+#movingtext {
+  overflow: hidden;
+  width: 100%;
+  height: 25vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to right, #ffffff, #f9f9f9);
+  position: relative;
+  /* margin: 0px 10px 0px 10px ;
+  border-top:1px solid black;
+  border-bottom:1px solid black; */
+}
+
+/* Text Wrapper */
+.con {
+  display: flex;
+  white-space: nowrap;
+  gap: 2vw;
+  animation: scroll 10s linear infinite;
+}
+
+/* Text Styling */
+#movingtext span {
+  font-size: 10vw;
+  font-weight: bold;
+  display: inline-block;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Remove scrollbar */
+#movingtext::-webkit-scrollbar {
+  display: none;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  #movingtext {
+    height: 20vh; /* Reduce height on smaller devices */
+  }
+  #movingtext span {
+    font-size: 8vw; /* Adjust font size */
+  }
+}
+
+@media (max-width: 480px) {
+  #movingtext {
+    height: 10vh; /* Further reduce height for very small devices */
+  }
+  #movingtext span {
+    font-size: 16vw; /* Make font smaller for small screens */
+    letter-spacing: 0.5vw; /* Increase spacing for readability */
+  }
+}
+
+
+.box {
+  position: relative;
+  overflow: hidden;
+}
+
+.box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  transform: skewX(-15deg);
+  transition: transform 0.3s;
+}
+
+.box:hover::before {
+  transform: translateX(100%);
+}
+
+
+/* .text-box {
+  background: #ffc857;
+  color: #2d3142;
+  border-radius: 12px;
+  box-shadow: 6px 6px 0px white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.text-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 8px 8px 0px #343a40;
+}
+
+.timeline-wrapper::after {
+  background: #343a40;
+} */
