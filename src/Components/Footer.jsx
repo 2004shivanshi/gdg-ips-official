@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 import gdgLogo from '../assests/GD.svg';
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { db } from '../firebaseConfig';
+import { toast } from "sonner";
+
+// Initialize Firestore
+
 
 const Footer = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +14,7 @@ const Footer = () => {
     email: '',
     message: ''
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -16,9 +23,24 @@ const Footer = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+    
+    setLoading(true);
+
+    // Save form data to Firestore
+    try {
+      await addDoc(collection(db, "contactus"), formData);
+      console.log("Document written with ID: ", formData);
+      toast.success("Form submitted successfully!");
+    } catch (e) {
+      console.error("Error adding document: ", e);
+      toast.error("Error submitting form!");
+    } finally {
+      setLoading(false);
+    }
+
     // Reset form
     setFormData({ name: '', email: '', message: '' });
   };
@@ -104,9 +126,10 @@ const Footer = () => {
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-2 text-sm md:text-base rounded-md hover:bg-blue-700 transition-colors duration-300"
+                className={`w-full bg-blue-600 text-white py-2 text-sm md:text-base rounded-md hover:bg-blue-700 transition-colors duration-300 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                disabled={loading}
               >
-                Submit
+                {loading ? 'Submitting...' : 'Submit'}
               </button>
             </form>
           </div>
